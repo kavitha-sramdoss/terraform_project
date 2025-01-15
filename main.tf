@@ -2,7 +2,7 @@
 locals {
   vpc_id        = data.aws_subnet.my_subnet.vpc_id
   my_az         = data.aws_subnet.selected.availability_zone
-  instance_type = contains(data.aws_ec2_instance_type_offerings.t3a_types.instance_types, var.preferred_instance_type) ? var.preferred_instance_type : element(data.aws_ec2_instance_type_offerings.t3a_types.instance_types, 0)
+  instance_type = contains(data.aws_ec2_instance_type_offerings.m5_types.instance_types, var.preferred_instance_type) ? var.preferred_instance_type : element(data.aws_ec2_instance_type_offerings.m5_types.instance_types, 0)
 }
 
 data "aws_ami" "linux_image" {
@@ -62,13 +62,14 @@ data "aws_subnet" "selected_subnet" {
   }
 }
 
-# Data source to fetch available instance types for T3a family
-data "aws_ec2_instance_type_offerings" "t3a_types" {
+# Data source to fetch available instance types for m5 family
+data "aws_ec2_instance_type_offerings" "m5_types" {
   location_type = "region"
 
   filter {
     name   = "instance-type"
-    values = ["t3a.small", "t3a.medium", "t3a.large", "t3a.xlarge", "t3a.2xlarge"]
+    #values = ["t3.small", "t3.medium", "t3.large", "t3.xlarge", "t3.2xlarge"]
+    values = ["m5.large","m5.xlarge", "m5.2xlarge", "m5.4xlarge", "m5.8xlarge", "m5.12xlarge"]
   }
 }
 
@@ -123,6 +124,14 @@ resource "aws_instance" "test_instance" {
   subnet_id       = data.aws_subnet.selected_subnet.id
   security_groups = [aws_security_group.my_sg.id]
   key_name        = var.keys
+
+  #Only supported for certain types of instances such as m5, m6 or ultra
+  #This only modifies the core per CPU, not the actual vCPU which is useful while handling licensing
+  cpu_options {
+    core_count       = 4
+    threads_per_core = 2
+  }
+
   tags = {
     Name = random_string.random_name.id
   }

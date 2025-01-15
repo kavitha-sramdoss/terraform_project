@@ -34,7 +34,7 @@ variable "keys" {
 variable "preferred_instance_type" {
   description = "Preferred instance type"
   type        = string
-  default     = "t3a.small"
+  default     = "m5.large"
 }
 
 variable "vcpus" {
