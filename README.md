@@ -17,13 +17,13 @@ Terraform Project
 
 # Additional instructions
 To override the default values either update the var file "myvar.auto.tfvars" or use --var "variable_name=value"
-# Eg:  *terraform plan --var "root_volume_size=50" --var "ebs_size=40"*
-# Eg:  *terraform apply --var "root_volume_size=50" --var "ebs_size=40"*
+ Eg:  *terraform plan --var "root_volume_size=50" --var "ebs_size=40"*
+ Eg:  *terraform apply --var "root_volume_size=50" --var "ebs_size=40"*
 Variable precedence is terraform help in ensuring the reusability of the code. The same code can be replicated to create resources across environments by modifying the variable in the tfvars file myvar.auto.tfvars or for testing, one can use the --var option which takes the most precedence during resource creation. 
 
 # SSH keys
 While using the ssh keys, we are overring the default key specidied as part of the var.tf variable block definition "Instance_key01" to "Instance_key02" in myvar.auto.tfvar as it takes precedence over the default variable in the variable block. We can also have a key specified as part of the environmental variable as TF_VAR_variable_name. 
-  # Eg: *export TF_VAR_keys=Instance_key01*
+   Eg: *export TF_VAR_keys=Instance_key01*
 The environmental variables are however the least preferred variables which are overridde by the default, tfvars, auto.tfvars or --var "variable=value" in their order of prefence. 
 Apart from this option, we can also create a map of strings varilable for keys, where more than one valid keys can be specified and used in the main.tf depending on the requirement and called using the lookup function, but the variable precedence option works better here as it requires least intervention. 
 
