@@ -38,4 +38,9 @@ Apart from this option, we can also create a map of strings varilable for keys, 
    VCS - Version Controlled System, when integrated with a version control (git) via webhook, a commit would trigger a build
    API driven - Trigger workflow using Terraform Enterprise API, best option to use with pipeline. 
 
+# Access VM using ssh key
+Use Instance_key02 to access the instance
+*ssh -i "pem_key_path/Instance_key02.pem ubuntu@public_ip_addr*
+Eg:  *ssh -i "C:\Users\kavitha\Downloads\Instance_key02.pem" ubuntu@65.2.178.145*
+
 
