@@ -58,7 +58,7 @@ variable "keys" {
 variable "preferred_instance_type" {
   description = "Preferred instance type"
   type        = string
-  default     = "m5.2kxlarge"
+  default     = "m5.2xlarge"
 }
 
 variable "core_count" {
