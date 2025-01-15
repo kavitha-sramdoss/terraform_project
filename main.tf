@@ -67,9 +67,9 @@ data "aws_ec2_instance_type_offerings" "m5_types" {
   location_type = "region"
 
   filter {
-    name   = "instance-type"
+    name = "instance-type"
     #values = ["t3.small", "t3.medium", "t3.large", "t3.xlarge", "t3.2xlarge"]
-    values = ["m5.large","m5.xlarge", "m5.2xlarge", "m5.4xlarge", "m5.8xlarge", "m5.12xlarge"]
+    values = ["m5.2xlarge", "m5.4xlarge", "m5.8xlarge", "m5.12xlarge", "m5.16xlarge"]
   }
 }
 
@@ -128,7 +128,7 @@ resource "aws_instance" "test_instance" {
   #Only supported for certain types of instances such as m5, m6 or ultra
   #This only modifies the core per CPU, not the actual vCPU which is useful while handling licensing
   cpu_options {
-    core_count       = 4
+    core_count       = var.core_count
     threads_per_core = 2
   }
 
@@ -137,15 +137,15 @@ resource "aws_instance" "test_instance" {
   }
 
   root_block_device {
-    volume_size = 30
-    volume_type = "gp2"
+    volume_size           = 30
+    volume_type           = "gp2"
     delete_on_termination = true
   }
 
   ebs_block_device {
-    device_name = "/dev/sdh"
-    volume_size = 20
-    volume_type = "gp2"
+    device_name           = "/dev/sdh"
+    volume_size           = 20
+    volume_type           = "gp2"
     delete_on_termination = true
   }
 

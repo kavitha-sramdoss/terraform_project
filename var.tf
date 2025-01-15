@@ -26,28 +26,23 @@ variable "instance_type" {
 */
 
 variable "keys" {
-  type = string
+  type        = string
   description = "ssh Keys to be used"
-  default = "Instance_key01"
+  default     = "Instance_key01"
 }
 
 variable "preferred_instance_type" {
   description = "Preferred instance type"
   type        = string
-  default     = "m5.large"
+  default     = "m5.2kxlarge"
 }
 
-variable "vcpus" {
+variable "core_count" {
   description = "Custom number of vCPUs"
   type        = number
   default     = 4
 }
 
-variable "memory" {
-  description = "Custom amount of memory (GB)"
-  type        = number
-  default     = 32
-}
 
 
 
