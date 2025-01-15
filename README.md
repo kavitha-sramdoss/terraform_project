@@ -50,4 +50,10 @@ Use Instance_key02 to access the instance
 
 Eg:  *ssh -i "C:\Users\kavitha\Downloads\Instance_key02.pem" ubuntu@65.2.178.145*
 
+To check the disk sizes provisioned, execute below command
+
+sudo fdisk -l | grep -B1 Elastic
+
+
+
 
