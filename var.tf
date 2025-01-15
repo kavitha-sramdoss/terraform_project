@@ -8,6 +8,30 @@ variable "subnet_id" {
   description = "subnet ID"
 }
 
+variable "instance_name_length" {
+  type        = number
+  description = "Length of Instance name in numbers"
+  default     = 12
+}
+
+variable "root_volume_size" {
+  type        = number
+  description = "Boot volume size in GB"
+  default     = 20
+}
+
+variable "ebs_size" {
+  type        = number
+  description = "Block volume size in GB"
+  default     = 30
+}
+
+variable "volume_type" {
+  type        = string
+  description = "Choose among gp2, gp3 (general purpose) or io1/io2 for high performance ssd volume"
+  default     = "gp3"
+}
+
 /*
 variable "az" {
   type = map(string)

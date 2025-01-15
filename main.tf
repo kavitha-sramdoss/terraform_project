@@ -75,7 +75,7 @@ data "aws_ec2_instance_type_offerings" "m5_types" {
 
 #Generate random string for instance names
 resource "random_string" "random_name" {
-  length  = 12
+  length  = var.instance_name_length
   numeric = true
   special = false
   lower   = true
@@ -137,15 +137,15 @@ resource "aws_instance" "test_instance" {
   }
 
   root_block_device {
-    volume_size           = 30
-    volume_type           = "gp2"
+    volume_size           = var.root_volume_size
+    volume_type           = var.volume_type
     delete_on_termination = true
   }
 
   ebs_block_device {
     device_name           = "/dev/sdh"
-    volume_size           = 20
-    volume_type           = "gp2"
+    volume_size           = var.ebs_size
+    volume_type           = var.volume_type
     delete_on_termination = true
   }
 
