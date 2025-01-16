@@ -38,7 +38,7 @@ Apart from this option, we can also create a map of strings varilable for keys, 
 2. Second one was with dyamic shape selection. Given that most of my experience lies with OCI, I wasn't aware only a certain instance type in AWS support CPU core count modification. To be more specific, only the core count of the vCPU as part of the instance template can be modified, not the vCPU itself, or the memory. We must choose different instance types based on the requirement for different vCPU or memory values. AWS offers huge range of instance types where we can find a match on most occassion.
 
 # State file Management
- Terraform's state files are the most critical files and for production, the state file must be stored either in a cloud object storage like aws s3 with dynamodb lock or terraform native cloud, *Terraform Enterprise*. Terraform Enterprise offers multiple options of running terraform code within a workspace such as
+ Terraform's state files are the most critical files and for production, the state file must be stored either in a cloud object storage like aws s3 with dynamodb lock or terraform native cloud *Terraform Enterprise*. Terraform Enterprise offers multiple options of running terraform code within a workspace such as
    CLI driven - the most basic version of workspace for testing the code ensuring the state files are in a remote location. One can use the CLI driven workspace in scripted pipeline as well, but the API driven is most preferred. 
    VCS - Version Controlled System, when integrated with a version control (git) via webhook, a commit would trigger a build
    API driven - Trigger workflow using Terraform Enterprise API, best option to use with pipeline. 
